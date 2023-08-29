@@ -11,6 +11,7 @@ class Animal {
       return `The ${this.name} makes the sound "${this.sound}".`;
     }
   }
+
 class Fish extends Animal {
     saltwater: boolean;
     constructor(name: string, food: string, saltwater: boolean) {
@@ -37,51 +38,40 @@ class Bird extends Animal {
   }
 }
 
-  
   describe("Testing animals", () => {
     test("a basic animal works as expected", () => {
       let lion = new Animal("lion", "roar", "meat");
-      // lion is an animal
       expect(lion instanceof Animal).toBeTruthy();
-      // lion.soundOff() has the expected output
       expect(lion.soundOff()).toBe('The lion makes the sound "roar".');
     });
     describe("Fish", () => {
-      // Fish should only have the three parameters listed.
       let goldfish = new Fish("goldfish", "pellets", false);
       let shark = new Fish("shark", "fish", true);
       it("are animals", () => {
-        // Fish *must* extend Animal
         expect(goldfish instanceof Animal).toBeTruthy();
       });
       it("doesn't make sound", () => {
-        // Fish should give the expected soundOff, it's own version
         expect(goldfish.soundOff()).toBe(
           "The goldfish is a fish and does not make sounds."
         );
       });
       it("can be saltwater or freshwater", () => {
-        // Fish gives the right habitat string based on the `saltwater` property
         expect(goldfish.habitat()).toBe("The goldfish is a freshwater fish.");
         expect(shark.habitat()).toBe("The shark is a saltwater fish.");
       });
     });
     describe("Birds", () => {
-      // Bird should actually take four arguments
       let swallow = new Bird("swallow", "chattering chirp", "insects", 11);
       let emu = new Bird("emu", "grunt", "plants and insects", 0);
       it("are animals", () => {
-        // Bird *must* extend Animal
         expect(swallow instanceof Animal).toBeTruthy();
       });
       it("make sounds", () => {
-        // Bird uses the standard soundOff
         expect(swallow.soundOff()).toBe(
           'The swallow makes the sound "chattering chirp".'
         );
       });
       it("might be able to fly", () => {
-        // Bird have a new method using the fly speed to give us these strings
         expect(swallow.fly()).toBe(
           "The swallow flies at speeds of up to 11 meters per second!"
         );
