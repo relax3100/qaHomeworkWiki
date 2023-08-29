@@ -11,21 +11,32 @@ class Animal {
       return `The ${this.name} makes the sound "${this.sound}".`;
     }
   }
-  
-  /**
-   * Fish extends Animal, but takes different properties, has a different soundOff() method, and a new method, habitat().
-   * @param {string} name - as expected
-   * @param {string} food - as expected
-   * @param {string} saltwater - true if the fish is a saltwater fish
-   */
-  
-  /**
-   * Bird extends Animal, but takes an additional property, and has an additional method, fly().
-   * @param {string} name - as expected
-   * @param {string} sound - as expected
-   * @param {string} food - as expected
-   * @param {number} flightSpeed - the flight speed of the bird, in meters/second. This should be 0 for flightless birds.
-   */
+class Fish extends Animal {
+    saltwater: boolean;
+    constructor(name: string, food: string, saltwater: boolean) {
+      super(name, null, food);
+      this.saltwater = saltwater;
+    }
+    soundOff(): string {
+      return `The ${this.name} is a fish and does not make sounds.`;
+  }
+  habitat(): string {
+    return `The ${this.name} is a ${this.saltwater? "saltwater": "freshwater"} fish.`;
+  }
+}
+class Bird extends Animal {
+  flightspeed: number;
+  constructor(name: string, sound: string, food: string, flightSpeed: number) {
+    super(name,sound, food);
+    this.flightspeed = flightSpeed;
+  }
+  fly(): string{
+    if(this.flightspeed > 0)
+    return `The ${this.name} flies at speeds of up to ${this.flightspeed} meters per second!`;
+  else return `The ${this.name} is a flightless bird.`
+  }
+}
+
   
   describe("Testing animals", () => {
     test("a basic animal works as expected", () => {
